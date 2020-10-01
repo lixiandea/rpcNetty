@@ -2,7 +2,17 @@ package com.lixiande.common.protocol;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+/**
+* @program: RpcServiceInfo
+*
+* @description: service info
+ * servicename for deserialize class
+ * version for different function
+*
+* @author: LiXiande
+*
+* @create: 15:57 2020/9/30
+**/
 public class RpcServiceInfo implements Serializable {
     private String serviceName;
     private String version;

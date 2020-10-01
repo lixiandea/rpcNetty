@@ -6,16 +6,40 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+/**
+* @program: RpcProtocol
+*
+* @description: class for serialize and deserialize.
+ * host: service server host
+ * port: service server port
+ * serviceInfos: services in the same service server
+*
+* @author: LiXiande
+*
+* @create: 15:51 2020/9/30 
+**/
 public class RpcProtocol implements Serializable {
     public static final long serialVersionUID = -1102180003395190700L;
     private String host;
     private int port;
     private List<RpcServiceInfo> serviceInfos;
 
+    /**
+     *
+     * @return: json String for serialize
+     */
     public String toJson(){
         String json = JsonUtil.objectToJson(this);
         RpcProtocol obj = JsonUtil.jsonToObject (json, RpcProtocol.class);
         return json;
+    }
+    /**
+     * json string to RpcProtocol
+     * @param json
+     * @return RpcProtocol instance
+     */
+    public static RpcProtocol fromJson(String json){
+        return JsonUtil.jsonToObject(json, RpcProtocol.class);
     }
 
     public static long getSerialVersionUID() {
@@ -46,9 +70,7 @@ public class RpcProtocol implements Serializable {
         this.serviceInfos = serviceInfos;
     }
 
-    public static RpcProtocol fromJson(String json){
-        return JsonUtil.jsonToObject(json, RpcProtocol.class);
-    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -62,6 +84,7 @@ public class RpcProtocol implements Serializable {
                     isListEquals(that.serviceInfos, this.getServiceInfos());
         }
     }
+
     private boolean isListEquals(List<RpcServiceInfo> thisList, List<RpcServiceInfo> thatList) {
         if (thisList == null && thatList == null) {
             return true;

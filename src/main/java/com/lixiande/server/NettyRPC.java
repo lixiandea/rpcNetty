@@ -9,7 +9,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import java.util.Map;
-
+/**
+* @program: NettyRPC
+*
+* @description:  netty rpc with spring bean
+*
+* @author: LiXiande
+*
+* @create: 9:33 2020/10/1
+**/
 public class NettyRPC extends NettyServer implements DisposableBean, InitializingBean, ApplicationContextAware {
     public NettyRPC(String serverAddrress, String registryAddress, int port) {
         super(serverAddrress, port, registryAddress);

@@ -4,7 +4,15 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
+/**
+* @program: ThreadPoolUtil
+*
+* @description: generate thread pool
+*
+* @author: LiXiande
+*
+* @create: 17:12 2020/9/30
+**/
 public class ThreadPoolUtil {
     public static ThreadPoolExecutor makeServiceThreadPool(final String serviceName, int corePoolSize, int maxPoolSize){
         ThreadPoolExecutor serverHandlerPool = new ThreadPoolExecutor(

@@ -7,7 +7,15 @@ import com.lixiande.common.serializer.Serializer;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
+/**
+* @program: HessianSerializer
+*
+* @description: hessian Serializer.
+*
+* @author: LiXiande
+*
+* @create: 16:48 2020/9/30
+**/
 public class HessianSerializer extends Serializer {
     @Override
     public <T> byte[] serialize(T obj) {

@@ -10,6 +10,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+* @program: RpcLoadBalance
+*
+* @description: loadbalance interface
+ * for same service and method
+ * if we have several server for one service,
+ * we may need route it
+*
+* @author: LiXiande
+*
+* @create: 16:43 2020/9/30
+**/
 public abstract class RpcLoadBalance {
     protected Map<String, List<RpcProtocol>> getServiceMap(Map<RpcProtocol, RpcClientHandler> connectedServerNodes){
         Map<String, List<RpcProtocol>> serviceMap = new HashMap<>();

@@ -25,13 +25,18 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
         channel.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
     }
 
+    /**
+     * send request and get invoke result
+     * @param request : request to send
+     * @return
+     */
     public RpcFuture sendRequest(RpcRequest request){
         RpcFuture future = new RpcFuture(request);
         pendingRpc.put(request.getRequestId(), future);
         try {
             ChannelFuture channelFuture = channel.writeAndFlush(request).sync();
             if(channelFuture.isSuccess()){
-                logger.error("Send request {} success", request.getRequestId());
+                logger.info("Send request {} success", request.getRequestId());
             } else {
                 logger.error("Send request {} error", request.getRequestId());
             }
@@ -42,7 +47,12 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
     }
 
 
-
+    /**
+     * deal channel read context
+     * @param channelHandlerContext : channel context
+     * @param rpcResponse : for client, all need is to deal with response
+     * @throws Exception
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, RpcResponse rpcResponse) throws Exception {
         String requestId = rpcResponse.getRequestId();

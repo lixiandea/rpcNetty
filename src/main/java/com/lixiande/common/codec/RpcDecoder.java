@@ -9,6 +9,26 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+
+/**
+* @program: RpcDecoder
+*
+* @description: Decoder for request:
+ * in this rpc application:
+ * server
+ *  |
+ *  |registry service (rpcProtocol)
+ *  v
+ *  zookeeper<---discovery service-- client
+ *
+ *  and client send request to server with this procession:
+ *  client->requst->Rpcencoder->server->Rpcdecoder->deserialize->invoke
+ *  server -> response -> Rpcencoder -> client -> Rpcdecoder
+ * call serializer.deserialize() to generate Object
+* @author: LiXiande
+*
+* @create: 14:56 2020/9/30 
+**/
 public class RpcDecoder extends ByteToMessageDecoder {
     private static final Logger logger = LoggerFactory.getLogger(RpcDecoder.class);
     private Class<?> genericClass;

@@ -25,6 +25,11 @@ public class RpcServerInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
+        /**
+         * for server
+         * decode request
+         * encode response
+         */
         Serializer serializer = HessianSerializer.class.newInstance();
         ChannelPipeline pipeline = socketChannel.pipeline();
         pipeline.addLast(new IdleStateHandler(0,0, Beat.BEAT_TIMEOUT, TimeUnit.SECONDS));

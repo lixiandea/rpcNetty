@@ -1,6 +1,7 @@
 package com.lixiande.server;
 
 
+import com.lixiande.common.service.registry.ServiceRegistry;
 import com.lixiande.common.util.ServiceUtil;
 import com.lixiande.common.util.ThreadPoolUtil;
 import com.lixiande.common.zookeeper.CuratorClient;

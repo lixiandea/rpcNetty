@@ -2,6 +2,15 @@ package com.lixiande.common.serializer.kryo;
 
 import com.lixiande.common.serializer.Serializer;
 
+/**
+* @program: KryoSerializer
+*
+* @description: kryo Serializer
+*
+* @author: LiXiande
+*
+* @create: 16:49 2020/9/30
+**/
 public class KryoSerializer extends Serializer {
 //TODO: kryo
 

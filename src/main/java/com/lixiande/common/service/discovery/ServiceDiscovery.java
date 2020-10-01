@@ -13,7 +13,15 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+* @program: ServiceDiscovery
+*
+* @description: service discovery for rpc client to get available service from registry
+*
+* @author: LiXiande
+*
+* @create: 16:49 2020/9/30
+**/
 public class ServiceDiscovery {
     public static final Logger logger = LoggerFactory.getLogger(ServiceDiscovery.class);
 

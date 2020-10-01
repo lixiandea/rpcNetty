@@ -9,7 +9,15 @@ import com.fasterxml.jackson.databind.*;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
-
+/**
+* @program: JsonUtil: jackson extension for object 2 json
+*
+* @description: generate json string for RpcProtocol
+*
+* @author: LiXiande
+*
+* @create: 17:02 2020/9/30 
+**/
 public class JsonUtil {
     public static ObjectMapper  objectMapper= new ObjectMapper();
     static {

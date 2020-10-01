@@ -11,7 +11,15 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.timeout.IdleStateHandler;
 
 import java.util.concurrent.TimeUnit;
-
+/**
+* @program: RpcClientInitializer
+*
+* @description: encode request and decode response to get result
+*
+* @author: LiXiande
+*
+* @create: 17:37 2020/9/30
+**/
 public class RpcClientInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {

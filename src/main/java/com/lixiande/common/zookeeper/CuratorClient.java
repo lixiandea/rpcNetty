@@ -13,10 +13,25 @@ import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.Watcher;
 
 import java.util.List;
-
+/**
+* @program: CuratorClient
+*
+* @description: zk curator client for service management
+*
+* @author: LiXiande
+*
+* @create: 16:57 2020/9/30
+**/
 public class CuratorClient {
     private CuratorFramework client;
 
+    /**
+     * init client
+     * @param connectString: host:port
+     * @param namespace: root path for this server
+     * @param sessionTimeout : session timeout
+     * @param connectionTimeout: connection timeout
+     */
     public CuratorClient(String connectString, String namespace, int sessionTimeout, int connectionTimeout){
         client = CuratorFrameworkFactory.builder().namespace(namespace)
                 .connectString(connectString).connectionTimeoutMs(connectionTimeout)
@@ -39,7 +54,14 @@ public class CuratorClient {
         client.getConnectionStateListenable().addListener(listener);
     }
 
+    /**
+     * create path and store RpcProtocol
+     * @param path : zk path
+     * @param data : RpcProtocol with  byte[] format
+     * @throws Exception
+     */
     public void createPathData(String path, byte[] data) throws Exception {
+        // create temporary zk node
         client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL)
                 .forPath(path,data);
     }

@@ -13,7 +13,16 @@ import org.springframework.validation.ObjectError;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.UUID;
-
+/**
+* @program: ObjectProxy
+*
+* @description: get Object with reflect from request and invoke and call
+ * do server process call
+*
+* @author: LiXiande
+*
+* @create: 15:58 2020/9/30
+**/
 public class ObjectProxy<T, P> implements
         InvocationHandler, RpcService<T, P, SerializableFunction<T>> {
     public static final Logger logger = LoggerFactory.getLogger(ObjectProxy.class);
@@ -58,6 +67,14 @@ public class ObjectProxy<T, P> implements
         return request;
     }
 
+    /**
+     *
+     * @param proxy : instance of service interface
+     * @param method : method of interface
+     * @param args : method args
+     * @return future.get() function get return of function
+     * @throws Throwable
+     */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if(Object.class == method.getDeclaringClass()){
@@ -73,24 +90,30 @@ public class ObjectProxy<T, P> implements
                 throw new IllegalStateException(String.valueOf(method));
             }
         }
+        // generate request to send
         RpcRequest request = new RpcRequest();
         request.setRequestId(UUID.randomUUID().toString());
         request.setClassName(method.getDeclaringClass().getName());
         request.setMethodName(method.getName());
+
+        // set setParameterTypes from method ParameterTypes
         request.setParameterTypes(method.getParameterTypes());
         request.setParameters(args);
         request.setVersion(version);
         logIfDebug(request);
+        // in fact servicekey can be easy generated from method
         String serviceKey = ServiceUtil.makeServiceKey(method.getDeclaringClass().getName(), version);
+        //return handler of chosen server
         RpcClientHandler handler = ConnectionManager.getInstance().chooseHandler(serviceKey);
+        //remote call
         RpcFuture future = handler.sendRequest(request);
+        // get result
         return future.get();
     }
 
     private Class<?> getClassType(Object obj){
         Class<?> clazz = obj.getClass();
         return clazz;
-
     }
 
     private void logIfDebug(RpcRequest request){
