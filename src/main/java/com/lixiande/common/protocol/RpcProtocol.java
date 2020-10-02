@@ -20,9 +20,9 @@ import java.util.Objects;
 **/
 public class RpcProtocol implements Serializable {
     public static final long serialVersionUID = -1102180003395190700L;
-    private String host;
-    private int port;
-    private List<RpcServiceInfo> serviceInfos;
+    private String host;            //server host
+    private int port;               //server port
+    private List<RpcServiceInfo> serviceInfos;  //service infos
 
     /**
      *
