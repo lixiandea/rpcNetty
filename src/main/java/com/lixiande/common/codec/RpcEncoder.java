@@ -49,7 +49,5 @@ public class RpcEncoder extends MessageToByteEncoder {
                 logger.error("Encoder Error : " + e.toString());
             }
         }
-
-
     }
 }

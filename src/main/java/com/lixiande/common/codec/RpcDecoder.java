@@ -22,10 +22,10 @@ import java.util.List;
  *  zookeeper<---discovery service-- client
  *
  *  and client send request to server with this procession:
- *  client->requst->Rpcencoder->server->Rpcdecoder->deserialize->invoke
- *  server -> response -> Rpcencoder -> client -> Rpcdecoder
+ *  client->request->RpcEncoder->server->RpcDecoder->deserialize->invoke
+ *  server -> response -> RpcEncoder -> client -> RpcDecoder
  * call serializer.deserialize() to generate Object
-* @author: LiXiande
+* @author: LiXianDe
 *
 * @create: 14:56 2020/9/30 
 **/
